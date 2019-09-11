@@ -670,20 +670,6 @@ const getValuation = function () {
     $('#client').removeClass('bg-danger text-white rounded');
     $('.client').addClass('invisible');
 };
-const getProjects = function () {
-    $('.value').addClass('invisible');
-    $('.GIS').addClass('invisible');
-    $('.projects').removeClass('invisible');
-    $('#GIS').removeClass('bg-danger text-white rounded');
-    $('#value').removeClass('bg-danger text-white rounded');
-    // $('#projects').addClass('bg-danger text-white rounded');
-    $('.other').addClass('invisible');
-    $('#other').removeClass('bg-danger text-white rounded');
-    $('.portfolio').addClass('invisible');
-    $('#portfolio').removeClass('bg-danger text-white rounded');
-    $('#client').removeClass('bg-danger text-white rounded');
-    $('.client').addClass('invisible');
-};
 const getOther = function () {
     $('.value').addClass('invisible');
     $('.GIS').addClass('invisible');
@@ -791,7 +777,6 @@ $('.demo').on('click', function () {
 
 $('#GIS').on('click', getGIS);
 $('#value').on('click', getValuation);
-$('#projects').on('click', getProjects);
 $('#other').on('click', getOther);
 $('#portfolio').on('click', getPortfolio);
 $('#client').on('click', getClient);

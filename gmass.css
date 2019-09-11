@@ -1,7 +1,5 @@
 body{
-    background-image: url('https://wallpapertag.com/wallpaper/full/9/7/8/129232-new-1280x720-background-2560x1440-for-tablet.jpg');
     background-size: cover;
-    padding-bottom:10%;
 }
 ::-webkit-scrollbar {
     width: 10px;
@@ -32,6 +30,9 @@ body{
 /* .empPortal{
     background-color:white;
 } */
+nav{
+    background-color: white; opacity: 0.8; filter: alpha(opacity=80);
+}
 .homeNav {
     position:absolute;
     top:0;
@@ -151,23 +152,16 @@ body{
 .staffDescrip{
     font-size:1rem;
     font-family: 'Exo', sans-serif;
-    color:black;
+    color:white;
     text-shadow: .25rem auto red;
 }
 .staffCat{
-    color:black;
+    color:white;
     text-shadow:
 		-.5px -.5px 0 red,
 		.5px -.5px 0 red,
 		-.5px .5px 0 red,
 		.5px .5px 0 red;
-}
-.small{
-    color: rgba(238, 26, 18, 0.829);
-    padding:0px auto;
-    margin: 0 auto;
-    font-size: 1.15rem;
-    font-weight: bold;
 }
 
 .empName{
@@ -177,10 +171,15 @@ body{
     word-wrap: normal;
     margin:0 auto;
     margin-top:1px;
+    color:white;
 }
 .empTitle{
     word-wrap: normal;
     max-width:90%;
+    color: blue;
+    padding:0px auto;
+    margin: 0 auto;
+    font-size: 1.15rem;
 }
 .demo{
     max-height:30vh;
