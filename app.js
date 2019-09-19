@@ -766,7 +766,6 @@ const submitContact = function (e) {
     } else $('#emailForm').prepend('<h5 class="text-danger">Uh Oh! Please Fill Out All Fields and Try Again!</h5>');
 }
 
-
 $('.demo').on('click', function () {
     if ($(this).paused) {
         $(this).play();
@@ -774,6 +773,8 @@ $('.demo').on('click', function () {
         $(this).pause();
     }
 })
+//Toggling profile versions
+$('.nav-item').on('click', profileSwitch);
 
 $('#GIS').on('click', getGIS);
 $('#value').on('click', getValuation);
@@ -824,6 +825,7 @@ $(function () {
         })
     })
 })
+
 
 //Setting portfolio items to change pictures
 $('.comp').on('click', function () {

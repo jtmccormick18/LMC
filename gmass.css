@@ -69,6 +69,9 @@ nav{
 .carousel-inner { 
     height: 100vh;
  }
+ .carousel-about{
+     height:50vh;
+ }
 
  .carousel-item  { 
     height: 100%;
