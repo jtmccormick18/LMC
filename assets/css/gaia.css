@@ -350,7 +350,7 @@ body > .navbar-collapse a {
 }
 .avatar img {
   width: 'auto';
-  max-height: 5%;
+  max-height: 100px;
 }
 
 .avatar-danger {
@@ -2481,6 +2481,13 @@ a,
   z-index: 100;
   display: block;
   margin-top: 30vh;
+  text-align: center;
+}
+.section-our-team .container {
+  position: relative;
+  z-index: 100;
+  display: block;
+  padding-top: 30vh;
   text-align: center;
 }
 .section-get-started .title-header,

@@ -30,9 +30,9 @@ body{
 /* .empPortal{
     background-color:white;
 } */
-nav{
+/* nav{
     background-color: white; opacity: 0.8; filter: alpha(opacity=80);
-}
+} */
 .homeNav {
     position:absolute;
     top:0;
@@ -190,9 +190,9 @@ nav{
     max-width:100%;
 }
 @media (min-width:768px) {
-    .navbar-collapse {
+    /* .navbar-collapse {
         width: 100%;
-    }
+    } */
    
 }
 @media(max-width:768px){
@@ -200,9 +200,9 @@ nav{
         text-shadow: none;
         font-size:3rem;
     }
-    .navbar-right{
+    /* .navbar-right{
         display:none;
-    }
+    } */
     .helperImg{
         display:none
     }

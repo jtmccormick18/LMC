@@ -632,109 +632,7 @@ const countyData = [
         "Link": "http://www.qpublic.net/ga/worth/"
     }
 ];
-const getGIS = function () {
-    $('.GIS').removeClass('invisible');
-    $('.value').addClass('invisible');
-    $('.projects').addClass('invisible');
-    // $('#GIS').addClass('bg-danger text-white rounded');
-    $('#value').removeClass('bg-danger text-white rounded');
-    $('#projects').removeClass('bg-danger text-white rounded');
-    $('.other').addClass('invisible');
-    $('#other').removeClass('bg-danger text-white rounded');
-    $('.portfolio').addClass('invisible');
-    $('#portfolio').removeClass('bg-danger text-white rounded');
-    $('#client').removeClass('bg-danger text-white rounded');
-    $('.client').addClass('invisible');
-};
-const jumboVal = function () {
-    localStorage.Services = "Valuation";
-}
-const jumboGIS = function () {
-    localStorage.Services = "GIS"
-}
-const jumboOther = function () {
-    localStorage.Services = "Software"
-}
 
-const getValuation = function () {
-    $('.value').removeClass('invisible');
-    $('.GIS').addClass('invisible');
-    $('.projects').addClass('invisible');
-    $('#GIS').removeClass('bg-danger text-white rounded');
-    // $('#value').addClass('bg-danger text-white rounded');
-    $('#projects').removeClass('bg-danger text-white rounded');
-    $('.other').addClass('invisible');
-    $('#other').removeClass('bg-danger text-white rounded');
-    $('.portfolio').addClass('invisible');
-    $('#portfolio').removeClass('bg-danger text-white rounded');
-    $('#client').removeClass('bg-danger text-white rounded');
-    $('.client').addClass('invisible');
-};
-const getOther = function () {
-    $('.value').addClass('invisible');
-    $('.GIS').addClass('invisible');
-    $('.projects').addClass('invisible');
-    $('#GIS').removeClass('bg-danger text-white rounded');
-    $('#value').removeClass('bg-danger text-white rounded');
-    $('#projects').removeClass('bg-danger text-white rounded');
-    $('.other').removeClass('invisible');
-    // $('#other').addClass('bg-danger text-white rounded');
-    $('.portfolio').addClass('invisible');
-    $('#portfolio').removeClass('bg-danger text-white rounded');
-    $('#client').removeClass('bg-danger text-white rounded');
-    $('.client').addClass('invisible');
-}
-const getPortfolio = function () {
-    $('.value').addClass('invisible');
-    $('.GIS').addClass('invisible');
-    $('.projects').addClass('invisible');
-    $('#GIS').removeClass('bg-danger text-white rounded');
-    $('#value').removeClass('bg-danger text-white rounded');
-    $('#projects').removeClass('bg-danger text-white rounded');
-    $('.other').addClass('invisible');
-    $('#other').removeClass('bg-danger text-white rounded');
-    $('.portfolio').removeClass('invisible');
-    $('#client').removeClass('bg-danger text-white rounded');
-    $('.client').addClass('invisible');
-    // $('#portfolio').addClass('bg-danger text-white rounded');
-}
-const getClient = function () {
-    $('.value').addClass('invisible');
-    $('.GIS').addClass('invisible');
-    $('.projects').addClass('invisible');
-    $('#GIS').removeClass('bg-danger text-white rounded');
-    $('#value').removeClass('bg-danger text-white rounded');
-    $('#projects').removeClass('bg-danger text-white rounded');
-    $('.other').addClass('invisible');
-    $('#other').removeClass('bg-danger text-white rounded');
-    $('.portfolio').addClass('invisible');
-    $('.client').removeClass('invisible');
-}
-
-const getLeadership = function () {
-    $('.tech').addClass('invisible');
-    $('.appraisers').addClass('invisible');
-    $('.support').addClass('invisible');
-    $('.leadership').removeClass('invisible');
-}
-const getTech = function () {
-    $('.leadership').addClass('invisible');
-    $('.appraisers').addClass('invisible');
-    $('.support').addClass('invisible');
-    $('.tech').removeClass('invisible');
-}
-const getAppraisers = function () {
-    $('.leadership').addClass('invisible');
-    $('.tech').addClass('invisible');
-    $('.support').addClass('invisible');
-    $('.appraisers').removeClass('invisible');
-}
-const getSupport = function () {
-    $('.leadership').addClass('invisible');
-    $('.appraisers').addClass('invisible');
-    $('.tech').addClass('invisible');
-    $('.support').removeClass('invisible');
-}
 const submitContact = function (e) {
     e.preventDefault();
     if ($('#nameField').val().trim() && $('#emailInput').val().trim()
@@ -773,21 +671,22 @@ $('.demo').on('click', function () {
         $(this).pause();
     }
 })
-//Toggling profile versions
-$('.nav-item').on('click', profileSwitch);
 
-$('#GIS').on('click', getGIS);
-$('#value').on('click', getValuation);
-$('#other').on('click', getOther);
-$('#portfolio').on('click', getPortfolio);
-$('#client').on('click', getClient);
-$('.nav-about').hover(function () {
-    $(this).toggleClass('bg-dark text-white')
-});
-$('.nav-about').on('click', function () {
-    $('.nav-about').removeClass('bg-dark');
-    $(this).addClass('bg-dark text-white');
-});
+//Toggling profile versions
+// $('.nav-item').on('click', profileSwitch);
+
+// $('#GIS').on('click', getGIS);
+// $('#value').on('click', getValuation);
+// $('#other').on('click', getOther);
+// $('#portfolio').on('click', getPortfolio);
+// $('#client').on('click', getClient);
+// $('.nav-about').hover(function () {
+//     $(this).toggleClass('bg-dark text-white')
+// });
+// $('.nav-about').on('click', function () {
+//     $('.nav-about').removeClass('bg-dark');
+//     $(this).addClass('bg-dark text-white');
+// });
 // $('.list-group-item').hover(function () {
 //     $(this).toggleClass('bg-light');
 // })
@@ -802,29 +701,47 @@ getCountyData = function () {
         })
     })
 }
-//If accessed from JumboTron, defining which DOM elements to show
-$(function () {
-    if (localStorage.Services === 'GIS') {
-        getGIS();
-    } else if (localStorage.Services === 'Valuation') {
-        getValuation();
-    } else if (localStorage.Services === 'Software') {
-        getOther();
-    }
-    localStorage.Services = '';
-    countyData.forEach(i => {
-        $('#countyMount tbody').append(function () {
 
-            let data = `<tr>
-                    <td> ${i.County}</td>
-                    <td><a href='${i.Link}' target="_blank">${i.Link}</a></td>
-                    </tr>
-                    `;
-            console.log(data)
-            return data;
-        })
-    })
+
+$.urlParam = function (name) {
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    return results[1] || 0;
+}
+
+
+
+$('.info-icon').hover(function(){
+    $(this).toggleClass('bg-success')
 })
+$('.info-icon').on('click',function(){
+    switch ($(this).attr('title')) {
+        case 'valuation':
+            $('.services').addClass('invisible');
+            $('#Valuation').removeClass('invisible');
+            break;
+        case 'GIS':
+            $('.services').addClass('invisible');
+            $('#GIS').removeClass('invisible');
+            break;
+        case 'tech':
+            $('.services').addClass('invisible');
+            $('#Tech').removeClass('invisible');
+            break;
+    }
+})
+
+// countyData.forEach(i => {
+//     $('#countyMount tbody').append(function () {
+
+//         let data = `<tr>
+//                 <td> ${i.County}</td>
+//                 <td><a href='${i.Link}' target="_blank">${i.Link}</a></td>
+//                 </tr>
+//                 `;
+//         console.log(data)
+//         return data;
+//     })
+// })
 
 
 //Setting portfolio items to change pictures
@@ -839,13 +756,5 @@ $('.comp').on('click', function () {
 
 })
 
-$('#GISJumbo').on('click', jumboGIS);
-$('#valJumbo').on('click', jumboVal);
-$('#softwareJumbo').on('click', jumboOther);
-$('#leader').on('click', getLeadership)
-$('#tech').on('click', getTech);
-$('#appraisers').on('click', getAppraisers);
-$('#support').on('click', getSupport);
-//submitting contact form
-$('#contactSubmit').on('click', submitContact);
+
 

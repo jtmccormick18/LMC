@@ -10,6 +10,10 @@ html {
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
+.serviceImage{
+  width:auto;
+  max-height:20vh;
+}
 body {
   margin: 0;
 }
@@ -63,6 +67,9 @@ dfn {
 h1 {
   margin: .67em 0;
   font-size: 2em;
+}
+.invisible{
+  display:none;
 }
 mark {
   color: #000;
