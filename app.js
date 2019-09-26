@@ -633,35 +633,89 @@ const countyData = [
     }
 ];
 
-const submitContact = function (e) {
-    e.preventDefault();
-    if ($('#nameField').val().trim() && $('#emailInput').val().trim()
-        && $('#corporation').val().trim() && $('#inputGroup').val().trim() && $('#summary').val().trim()) {
 
-        let data = {
-            name: $('#nameField').val().trim(),
-            email: $('#emailInput').val().trim(),
-            corporation: $('#corporation').val().trim(),
-            type: $('#inputGroup').val().trim(),
-            message: $('#summary').val().trim()
-        }
-        console.log(data);
-        $.ajax({
-            type: "POST",
-            url: '/send-email',
-            data: data
-        })
-            .done(function (res) {
-                $('#nameField').val('')
-                $('#emailInput').val('')
-                $('#corporation').val('')
-                $('#inputGroup').val('');
-                $('#summary').val('')
-                console.log(JSON.stringify(res));
-            }).fail(err => {
-                console.log(JSON.stringify(err));
-            })
-    } else $('#emailForm').prepend('<h5 class="text-danger">Uh Oh! Please Fill Out All Fields and Try Again!</h5>');
+
+const displayAbout = function (who) {
+    switch (who) {
+        case 'terry':
+            $('#empHidden').removeClass('invisible');
+            $('#expand').html(`<div class="row">
+    <div class="col-lg-3 col-xs-12">
+    
+                <img alt="..." class="img-circle" src="t-mack_fun.jpg" />
+            </div>
+            <div class="col-lg-9">
+                <div class="description">
+                    <h3 class="title">Terry McCormick</h3>
+                    <p class="small-text">CEO / Co-Founder</p>
+                    <p class="description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+            </div>
+            
+        </div>`)
+            break;
+        case 'stan':
+            $('#empHidden').removeClass('invisible');
+            $('#expand').html(`<div class="row">
+    <div class="col-lg-3 col-xs-12">
+    
+                <img alt="..." class="img-circle" src="assets/stan_fun.jpg" />
+            </div>
+            <div class="col-lg-9">
+                <div class="description">
+                    <h3 class="title">Stan King</h3>
+                    <p class="small-text">COO / Co-Founder</p>
+                    <p class="description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+            </div>
+            
+        </div>`);
+            break
+        case 'josh':
+            $('#empHidden').removeClass('invisible');
+            $('#expand').html(`<div class="row">
+    <div class="col-lg-3 col-xs-12">
+    
+                <img alt="..." class="img-circle" src="josh_fun.jpg" />
+            </div>
+            <div class="col-lg-9">
+                <div class="description">
+                    <h3 class="title">Josh McCormick</h3>
+                    <p class="small-text">SVP Technology</p>
+                    <p class="description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+            </div>
+            
+        </div>`)
+            break
+        case 'amber':
+            $('#empHidden').removeClass('invisible');
+            $('#expand').html(`<div class="row">
+    <div class="col-lg-3 col-xs-12">
+    
+                <img alt="..." class="img-circle" src="assets/amber.jpg" />
+            </div>
+            <div class="col-lg-9">
+                <div class="description">
+                    <h3 class="title">Amber Gilbert</h3>
+                    <p class="small-text">Project Manager</p>
+                    <p class="description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+            </div>
+            
+        </div>`)
+            break
+
+    }
+    return true;
 }
 
 $('.demo').on('click', function () {
@@ -672,24 +726,12 @@ $('.demo').on('click', function () {
     }
 })
 
-//Toggling profile versions
-// $('.nav-item').on('click', profileSwitch);
+$('.card-member').on('click', function () {
+    let id = ($(this).attr('id'))
+    console.log(id);
+    return displayAbout(id);
+})
 
-// $('#GIS').on('click', getGIS);
-// $('#value').on('click', getValuation);
-// $('#other').on('click', getOther);
-// $('#portfolio').on('click', getPortfolio);
-// $('#client').on('click', getClient);
-// $('.nav-about').hover(function () {
-//     $(this).toggleClass('bg-dark text-white')
-// });
-// $('.nav-about').on('click', function () {
-//     $('.nav-about').removeClass('bg-dark');
-//     $(this).addClass('bg-dark text-white');
-// });
-// $('.list-group-item').hover(function () {
-//     $(this).toggleClass('bg-light');
-// })
 getCountyData = function () {
     $('#countyMount').append(function () {
         countyData.map(i => {
@@ -710,10 +752,10 @@ $.urlParam = function (name) {
 
 
 
-$('.info-icon').hover(function(){
+$('.info-icon').hover(function () {
     $(this).toggleClass('bg-success')
 })
-$('.info-icon').on('click',function(){
+$('.info-icon').on('click', function () {
     switch ($(this).attr('title')) {
         case 'valuation':
             $('.services').addClass('invisible');
