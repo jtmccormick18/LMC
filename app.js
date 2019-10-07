@@ -647,34 +647,34 @@ const displayAbout = function (who) {
             <div class="col-lg-9">
                 <div class="description">
                     <h3 class="title">Terry McCormick</h3>
-                    <p class="small-text">CEO / Co-Founder</p>
+                    <p class="small-text">CEO & Founder</p>
                     <p class="description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    With over 30 years of experience under his belt, Terry (better known as T-Mack) provides the leadership and expertise necessary to ensure our business makes decisions to meet and exceed the expectations of our clients. He loves Georgia Football and telling the same jokes - over and over again.
                     </p>
                 </div>
             </div>
             
         </div>`)
             break;
-        case 'stan':
+        case 'kelly':
             $('#empHidden').removeClass('invisible');
             $('#expand').html(`<div class="row">
-    <div class="col-lg-3 col-xs-12">
-    
-                <img alt="..." class="img-circle" src="assets/stan_fun.jpg" />
-            </div>
-            <div class="col-lg-9">
-                <div class="description">
-                    <h3 class="title">Stan King</h3>
-                    <p class="small-text">COO / Co-Founder</p>
-                    <p class="description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                </div>
-            </div>
-            
-        </div>`);
-            break
+                <div class="col-lg-3 col-xs-12">
+                
+                            <img alt="..." class="img-circle" src="kelly.jpg" />
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="description">
+                                <h3 class="title">Kelly McCormick</h3>
+                                <p class="small-text">VP/Project Manager</p>
+                                <p class="description">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </p>
+                            </div>
+                        </div>
+                        
+                    </div>`)
+                    break;
         case 'josh':
             $('#empHidden').removeClass('invisible');
             $('#expand').html(`<div class="row">
@@ -685,9 +685,9 @@ const displayAbout = function (who) {
             <div class="col-lg-9">
                 <div class="description">
                     <h3 class="title">Josh McCormick</h3>
-                    <p class="small-text">SVP Technology</p>
+                    <p class="small-text">VP of Technology</p>
                     <p class="description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Josh refuses to write his own about me section, but has trouble finding someone to say nice things &#128533;
                     </p>
                 </div>
             </div>
@@ -706,7 +706,7 @@ const displayAbout = function (who) {
                     <h3 class="title">Amber Gilbert</h3>
                     <p class="small-text">Project Manager</p>
                     <p class="description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Amber would be a tremendous asset in anything she chose to do. We are blessed that she has chosen to join our team. Her organization, reliability, and personality in general make it easy to trust her with very important jobs - with no worry that there will be a mishap. In her free time, she loves Margaritas and country music.
                     </p>
                 </div>
             </div>
