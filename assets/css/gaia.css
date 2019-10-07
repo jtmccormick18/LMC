@@ -3677,6 +3677,9 @@ body {
     max-width: 550px;
     margin: 0 auto;
   }
+  .title-area{
+    margin-top:30px !important
+  }
 
   .section.section-we-do .text-description {
     max-width: 420px;
