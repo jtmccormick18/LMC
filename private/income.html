@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>McCormick - Income Module</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="jumbotron">
+            <h1 class="text-center">McCormick Income Module</h1>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <form>
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="validationCustom01">Potential Gross Income (Yearly)</label>
+                                <input type="text" class="form-control" id="pgi" placeholder="6000">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationCustom02">Vacancy & Collection Allowance (%)</label>
+                                <input type="text" class="form-control" id="vca" placeholder=".05" value>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationCustom02">Misc Income (%)</label>
+                                <input type="text" class="form-control" id="mi" placeholder=".01">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationCustomUsername">Allowable Expenses of EGI (%)</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="ae" placeholder=".15" required>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationCustomUsername">Reserves for Replacement (%)</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="rr" placeholder=".3" required>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationCustomUsername">Cap Rate</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="cr" placeholder=".085" required>
+
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="button" id="valGen">Generate Value</button>
+            </form>
+            <br></br>
+            <div class="row text-center">
+                <div class="col-xs-4">
+                    <p class="lead">Effective Gross Income: <span class="text-success" id="egi"></span></p>
+                </div>
+                <div class="col-xs-4 mx-auto">
+                    <p class="lead">Net Operating Income: <span class="text-success" id="noi"></span></p>
+                </div>
+                <div class="col-xs-4 mx-auto">
+                    <p class="lead">Income Value: <span class="text-success" id="incomeVal"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.js"
+        integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
+    <script>
+
+        let grossIncomeEquation;
+        let noi;
+        let incomeValue;
+
+
+        let pgi
+        let vacancyAllowance
+        let miscIncome
+        let egiParams
+
+        let expenses
+        let reserves
+        let noiParams
+
+        let capRate = parseFloat($('#cr').val().trim());
+        $('#pgi, #vca, #mi, #ae,#rr').change(function () {
+
+
+
+
+            pgi = parseFloat($('#pgi').val().trim());
+            vacancyAllowance = parseFloat($('#vca').val().trim());
+            miscIncome = parseFloat($('#mi').val().trim());
+            egiParams = pgi && vacancyAllowance && miscIncome;
+
+            expenses = parseFloat($('#ae').val().trim());
+            reserves = parseFloat($('#rr').val().trim());
+            noiParams = expenses && reserves;
+
+            capRate = parseFloat($('#cr').val().trim());
+
+            if (egiParams) {
+                grossIncomeEquation = pgi - (pgi * vacancyAllowance) + (pgi * miscIncome);
+                if (grossIncomeEquation) {
+                    $('#egi').text(grossIncomeEquation);
+                }
+            }
+            if (noiParams && grossIncomeEquation) {
+                noi = grossIncomeEquation - (grossIncomeEquation * expenses) - (grossIncomeEquation * reserves);
+                $('#noi').text(noi);
+            }
+        })
+        $('#valGen').on('click', function () {
+            pgi = parseFloat($('#pgi').val().trim());
+            vacancyAllowance = parseFloat($('#vca').val().trim());
+            miscIncome = parseFloat($('#mi').val().trim());
+            egiParams = pgi && vacancyAllowance && miscIncome;
+
+            expenses = parseFloat($('#ae').val().trim());
+            reserves = parseFloat($('#rr').val().trim());
+            noiParams = expenses && reserves;
+
+            capRate = parseFloat($('#cr').val().trim());
+
+            if (egiParams) {
+                grossIncomeEquation = pgi - (pgi * vacancyAllowance) + (pgi * miscIncome);
+                if (grossIncomeEquation) {
+                    $('#egi').text(parseFloat(grossIncomeEquation));
+                }
+            }
+            if (noiParams && grossIncomeEquation) {
+                noi = grossIncomeEquation - (grossIncomeEquation * expenses) - (grossIncomeEquation * reserves);
+                $('#noi').text(parseFloat(noi));
+            }
+            if (noi) {
+                if (!capRate) {
+                    capRate = .0850
+                }
+                incomeValue = noi / capRate;
+                $('#incomeVal').text(parseFloat(incomeValue));
+            }
+            else {
+                alert('Not Enough Information')
+            }
+        })
+    </script>
+</body>
+
+</html>
