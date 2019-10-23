@@ -7,18 +7,50 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href='./income.css' type="text/css">
     <title>McCormick - Income Module</title>
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="jumbotron">
-            <h1 class="text-center">McCormick Income Module</h1>
+    <style type="text/css">
+        .demo-droppable {
+            background: transparent;
+            color: black;
+            padding: 10px 0;
+            text-align: center;
+            border: dashed 1px black;
+        }
+
+        .demo-droppable.dragover {
+            background: #00CC71;
+        }
+    </style>
+    <div class="container-fluid p-0">
+        <div class="jumbotron text-center p-5">
+            <img class="fluid" src="./logo.png" height=50 width="auto" />
+            <h1 class="text-center">Income Module</h1>
+
         </div>
         <div class="container">
+            <div class="demo-droppable my-auto">
+                <p>Drag files here or click to upload</p>
+            </div>
             <div class="row">
                 <div class="col">
                     <form>
+                        <div class="form-row text-center" style="height: 30vh;">
+                            <div class="col-md-4 mb-3 my-auto">
+                                <label style='color:red; font-size:120%;font-weight: bold;'>Parcel ID</label>
+                                <input type="text" class="form-control" id="rpin"
+                                    placeholder="Account Number or Parcel ID">
+                            </div>
+                            <div class="col-md-8 mb-3 my-auto text-center" id="img-mount">
+
+                                <div class="output"></div>
+                            </div>
+
+                        </div>
+                        <br />
                         <div class="form-row">
                             <div class="col-md-4 mb-3">
                                 <label for="validationCustom01">Potential Gross Income (Yearly)</label>
@@ -56,12 +88,34 @@
                         </div>
                 </div>
             </div>
+            <br />
+            <div class="row">
+                <div class="col-xs-12 mx-auto text-center">
+                    <button class="btn btn-danger text-center text-white" style='font-weight: bold;' type="button"
+                        id="valGen">Generate Value</button>
+                </div>
+            </div>
 
-            <button class="btn btn-primary" type="button" id="valGen">Generate Value</button>
             </form>
             <br></br>
             <div class="row text-center">
-                <div class="col-xs-4">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Effective Gross Income</th>
+                            <th scope="col">Net Operating Income</th>
+                            <th scope="col">Income Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-success" id="egi"></td>
+                            <td class="text-success" id="noi"></td>
+                            <td class="text-success" id="incomeVal"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <div class="col-xs-4">
                     <p class="lead">Effective Gross Income: <span class="text-success" id="egi"></span></p>
                 </div>
                 <div class="col-xs-4 mx-auto">
@@ -69,7 +123,7 @@
                 </div>
                 <div class="col-xs-4 mx-auto">
                     <p class="lead">Income Value: <span class="text-success" id="incomeVal"></span></p>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -79,7 +133,71 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.js"
         integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
-    <script>
+
+    <script type="text/javascript">
+        (function (window) {
+            function triggerCallback(e, callback) {
+                if (!callback || typeof callback !== 'function') {
+                    return;
+                }
+                var files;
+                if (e.dataTransfer) {
+                    files = e.dataTransfer.files;
+                } else if (e.target) {
+                    files = e.target.files;
+                }
+                callback.call(null, files);
+            }
+            function makeDroppable(ele, callback) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('multiple', true);
+                input.style.display = 'none';
+                input.addEventListener('change', function (e) {
+                    triggerCallback(e, callback);
+                });
+                ele.appendChild(input);
+
+                ele.addEventListener('dragover', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    ele.classList.add('dragover');
+                });
+
+                ele.addEventListener('dragleave', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    ele.classList.remove('dragover');
+                });
+
+                ele.addEventListener('drop', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    ele.classList.remove('dragover');
+                    triggerCallback(e, callback);
+                });
+
+                ele.addEventListener('click', function () {
+                    input.value = null;
+                    input.click();
+                });
+            }
+            window.makeDroppable = makeDroppable;
+        })(this);
+        (function (window) {
+            makeDroppable(window.document.querySelector('.demo-droppable'), function (files) {
+                console.log(files);
+                var output = document.querySelector('.output');
+                output.innerHTML = '';
+                for (var i = 0; i < files.length; i++) {
+                    if (files[i].type.indexOf('image/') === 0) {
+                        output.innerHTML += '<img width="300" height="auto" style="max-height:200" src="' + URL.createObjectURL(files[i]) + '" />';
+                    }
+                    // output.innerHTML += '<p>' + files[i].name + '</p>';
+                }
+            });
+        })(this);
+
 
         let grossIncomeEquation;
         let noi;
@@ -96,11 +214,11 @@
         let noiParams
 
         let capRate = parseFloat($('#cr').val().trim());
+
+        $('#rpin').change(function () {
+
+        })
         $('#pgi, #vca, #mi, #ae,#rr').change(function () {
-
-
-
-
             pgi = parseFloat($('#pgi').val().trim());
             vacancyAllowance = parseFloat($('#vca').val().trim());
             miscIncome = parseFloat($('#mi').val().trim());
@@ -115,12 +233,12 @@
             if (egiParams) {
                 grossIncomeEquation = pgi - (pgi * vacancyAllowance) + (pgi * miscIncome);
                 if (grossIncomeEquation) {
-                    $('#egi').text(grossIncomeEquation);
+                    $('#egi').text(parseInt(grossIncomeEquation).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
                 }
             }
             if (noiParams && grossIncomeEquation) {
                 noi = grossIncomeEquation - (grossIncomeEquation * expenses) - (grossIncomeEquation * reserves);
-                $('#noi').text(noi);
+                $('#noi').text(parseInt(noi).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
             }
         })
         $('#valGen').on('click', function () {
@@ -138,19 +256,19 @@
             if (egiParams) {
                 grossIncomeEquation = pgi - (pgi * vacancyAllowance) + (pgi * miscIncome);
                 if (grossIncomeEquation) {
-                    $('#egi').text(parseFloat(grossIncomeEquation));
+                    $('#egi').text(parseInt(grossIncomeEquation).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
                 }
             }
             if (noiParams && grossIncomeEquation) {
                 noi = grossIncomeEquation - (grossIncomeEquation * expenses) - (grossIncomeEquation * reserves);
-                $('#noi').text(parseFloat(noi));
+                $('#noi').text(parseInt(noi).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
             }
             if (noi) {
                 if (!capRate) {
                     capRate = .0850
                 }
                 incomeValue = noi / capRate;
-                $('#incomeVal').text(parseFloat(incomeValue));
+                $('#incomeVal').text(parseInt(incomeValue).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
             }
             else {
                 alert('Not Enough Information')
